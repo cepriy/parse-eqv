@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bb7843af-63bc-4c3f-85c5-8390f6248c49" name="Default" comment="" />
+    <list default="true" id="bb7843af-63bc-4c3f-85c5-8390f6248c49" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/TextsANSI/инглиш1-2.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/TextsANSI/крокодил.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/TextsANSI/свинья.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/TextsBiling" afterPath="$PROJECT_DIR$/TextsBiling" />
+      <change beforePath="$PROJECT_DIR$/TextsUTF8/козявкаtUN_en_art1-2.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/parseeqv/SearchEquive.java" afterPath="$PROJECT_DIR$/src/main/java/parseeqv/SearchEquive.java" />
+      <change beforePath="$PROJECT_DIR$/target/classes/parseeqv/SearchEquive.class" afterPath="$PROJECT_DIR$/target/classes/parseeqv/SearchEquive.class" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,8 +25,8 @@
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="27" column="36" lean-forward="false" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
+            <state relative-caret-position="271">
+              <caret line="27" column="24" lean-forward="false" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -26,10 +35,15 @@
       <file leaf-file-name="EquiveFrame.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/parseeqv/EquiveFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="526">
-              <caret line="378" column="54" lean-forward="false" selection-start-line="378" selection-start-column="54" selection-end-line="378" selection-end-column="54" />
+            <state relative-caret-position="558">
+              <caret line="49" column="76" lean-forward="false" selection-start-line="49" selection-start-column="76" selection-end-line="49" selection-end-column="76" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#2906#2907#0" expanded="true" />
+                <element signature="e#2957#2958#0" expanded="true" />
+                <element signature="e#5053#5054#0" expanded="true" />
+                <element signature="e#5128#5129#0" expanded="true" />
+                <element signature="e#8539#9418#0" expanded="true" />
+                <element signature="e#9417#9418#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -55,26 +69,36 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SearchEquive.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SearchEquive.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/parseeqv/SearchEquive.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-42">
-              <caret line="424" column="0" lean-forward="false" selection-start-line="424" selection-start-column="0" selection-end-line="424" selection-end-column="0" />
+            <state relative-caret-position="17">
+              <caret line="452" column="49" lean-forward="true" selection-start-line="452" selection-start-column="49" selection-end-line="452" selection-end-column="49" />
               <folding>
-                <marker date="1569344905457" expanded="true" signature="12928:13050" ph="INSERT INTO AllRegCorr... " />
-                <marker date="1569344905457" expanded="true" signature="26247:26289" ph="DELETE FROM AllRegCorr... " />
-                <marker date="1569344905457" expanded="true" signature="26352:26366" ph="SELECT * FRO... AllRegCorr" />
-                <marker date="1569344905457" expanded="true" signature="26430:26444" ph="SELECT * FRO... AllRegCorr" />
+                <marker date="1569764920058" expanded="true" signature="12948:13070" ph="INSERT INTO AllRegCorr... " />
+                <marker date="1569764920058" expanded="true" signature="26336:26378" ph="DELETE FROM AllRegCorr... " />
+                <marker date="1569764920058" expanded="true" signature="26441:26455" ph="SELECT * FRO... AllRegCorr" />
+                <marker date="1569764920058" expanded="true" signature="26519:26533" ph="SELECT * FRO... AllRegCorr" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Results_1.4 Spanish-English_ParseEqv_Fokin_S_B_All_rights_reserved0.txt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Results_1.4 Spanish-Ukrainian_ParseEqv_Fokin_S_B_All_rights_reserved0.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Results_1.4 Spanish-Ukrainian_ParseEqv_Fokin_S_B_All_rights_reserved0.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Results_1.4 Spanish-English_ParseEqv_Fokin_S_B_All_rights_reserved0.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Results_1.4 Spanish-English_ParseEqv_Fokin_S_B_All_rights_reserved0.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="582">
-              <caret line="293" column="14" lean-forward="true" selection-start-line="293" selection-start-column="14" selection-end-line="293" selection-end-column="14" />
+            <state relative-caret-position="5274">
+              <caret line="293" column="14" lean-forward="false" selection-start-line="293" selection-start-column="14" selection-end-line="293" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -92,7 +116,17 @@
       <find>autom</find>
       <find>save</find>
       <find>log.</find>
+      <find>righ</find>
+      <find>rights</find>
+      <find>fok</find>
+      <find>utf</find>
+      <find>scanner</find>
+      <find>edit</find>
     </findStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/TextsUTF16</dir>
+      <dir>$PROJECT_DIR$/src/main/java/parseeqv</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -126,10 +160,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1296" />
-    <option name="height" value="776" />
+    <option name="x" value="211" />
+    <option name="y" value="35" />
+    <option name="width" value="1398" />
+    <option name="height" value="992" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -147,6 +181,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -165,33 +201,11 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="sergio_fokin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="parse_eqv3" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sergio_fokin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="parse_eqv3" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="parseeqv" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sergio_fokin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="parse_eqv3" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -348,15 +362,19 @@
       <workItem from="1569164106255" duration="5327000" />
       <workItem from="1569262121496" duration="645000" />
       <workItem from="1569266178760" duration="603000" />
-      <workItem from="1569344597495" duration="959000" />
+      <workItem from="1569344597495" duration="1801000" />
+      <workItem from="1569472471375" duration="1795000" />
+      <workItem from="1569678045497" duration="887000" />
+      <workItem from="1569763783982" duration="3233000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7534000" />
+    <option name="totallyTimeSpent" value="14291000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -367,11 +385,11 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32939914" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39462367" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39462367" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25815368" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26755112" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32939914" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -445,12 +463,197 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/parseeqv/Parse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="828">
+          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/parseeqv/ParseConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="37" lean-forward="false" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/parseeqv/SearchEquive.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6750">
+          <caret line="395" column="26" lean-forward="false" selection-start-line="395" selection-start-column="25" selection-end-line="395" selection-end-column="26" />
+          <folding>
+            <marker date="1569764920058" expanded="true" signature="12948:13070" ph="INSERT INTO AllRegCorr... " />
+            <marker date="1569764920058" expanded="true" signature="26336:26378" ph="DELETE FROM AllRegCorr... " />
+            <marker date="1569764920058" expanded="true" signature="26441:26455" ph="SELECT * FRO... AllRegCorr" />
+            <marker date="1569764920058" expanded="true" signature="26519:26533" ph="SELECT * FRO... AllRegCorr" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Results_1.4 Spanish-English_ParseEqv_Fokin_S_B_All_rights_reserved0.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5274">
+          <caret line="293" column="14" lean-forward="false" selection-start-line="293" selection-start-column="14" selection-end-line="293" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/parseeqv/EquiveFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="71" lean-forward="false" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="71" />
+          <folding>
+            <element signature="e#2906#2907#0" expanded="true" />
+            <element signature="e#2957#2958#0" expanded="true" />
+            <element signature="e#5053#5054#0" expanded="true" />
+            <element signature="e#5128#5129#0" expanded="true" />
+            <element signature="e#8539#9418#0" expanded="true" />
+            <element signature="e#9417#9418#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="27" column="36" lean-forward="false" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/parseeqv/Parse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="828">
+          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/parseeqv/EquiveFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6804">
+          <caret line="378" column="54" lean-forward="false" selection-start-line="378" selection-start-column="54" selection-end-line="378" selection-end-column="54" />
+          <folding>
+            <element signature="e#2906#2907#0" expanded="true" />
+            <element signature="e#2957#2958#0" expanded="true" />
+            <element signature="e#5053#5054#0" expanded="true" />
+            <element signature="e#5128#5129#0" expanded="true" />
+            <element signature="e#8539#9418#0" expanded="true" />
+            <element signature="e#9417#9418#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/parseeqv/ParseConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="37" lean-forward="false" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/parseeqv/SearchEquive.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7632">
+          <caret line="424" column="0" lean-forward="false" selection-start-line="424" selection-start-column="0" selection-end-line="424" selection-end-column="0" />
+          <folding>
+            <marker date="1569764920058" expanded="true" signature="12948:13070" ph="INSERT INTO AllRegCorr... " />
+            <marker date="1569764920058" expanded="true" signature="26336:26378" ph="DELETE FROM AllRegCorr... " />
+            <marker date="1569764920058" expanded="true" signature="26441:26455" ph="SELECT * FRO... AllRegCorr" />
+            <marker date="1569764920058" expanded="true" signature="26519:26533" ph="SELECT * FRO... AllRegCorr" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Results_1.4 Spanish-English_ParseEqv_Fokin_S_B_All_rights_reserved0.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5274">
+          <caret line="293" column="14" lean-forward="false" selection-start-line="293" selection-start-column="14" selection-end-line="293" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="27" column="36" lean-forward="false" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/parseeqv/Parse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="828">
+          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/parseeqv/EquiveFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6804">
+          <caret line="378" column="54" lean-forward="false" selection-start-line="378" selection-start-column="54" selection-end-line="378" selection-end-column="54" />
+          <folding>
+            <element signature="e#2906#2907#0" expanded="true" />
+            <element signature="e#2957#2958#0" expanded="true" />
+            <element signature="e#5053#5054#0" expanded="true" />
+            <element signature="e#5128#5129#0" expanded="true" />
+            <element signature="e#8539#9418#0" expanded="true" />
+            <element signature="e#9417#9418#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/parseeqv/ParseConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="37" lean-forward="false" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/parseeqv/SearchEquive.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7632">
+          <caret line="424" column="0" lean-forward="false" selection-start-line="424" selection-start-column="0" selection-end-line="424" selection-end-column="0" />
+          <folding>
+            <marker date="1569764920058" expanded="true" signature="12948:13070" ph="INSERT INTO AllRegCorr... " />
+            <marker date="1569764920058" expanded="true" signature="26336:26378" ph="DELETE FROM AllRegCorr... " />
+            <marker date="1569764920058" expanded="true" signature="26441:26455" ph="SELECT * FRO... AllRegCorr" />
+            <marker date="1569764920058" expanded="true" signature="26519:26533" ph="SELECT * FRO... AllRegCorr" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Results_1.4 Spanish-English_ParseEqv_Fokin_S_B_All_rights_reserved0.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5274">
+          <caret line="293" column="14" lean-forward="true" selection-start-line="293" selection-start-column="14" selection-end-line="293" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="27" column="36" lean-forward="false" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/parseeqv/EquiveFrame.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="666">
           <caret line="37" column="31" lean-forward="false" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2906#2907#0" expanded="true" />
+            <element signature="e#2957#2958#0" expanded="true" />
+            <element signature="e#5053#5054#0" expanded="true" />
+            <element signature="e#5128#5129#0" expanded="true" />
+            <element signature="e#8539#9418#0" expanded="true" />
+            <element signature="e#9417#9418#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -476,10 +679,10 @@
         <state relative-caret-position="882">
           <caret line="61" column="26" lean-forward="false" selection-start-line="61" selection-start-column="26" selection-end-line="61" selection-end-column="26" />
           <folding>
-            <marker date="1569344905457" expanded="true" signature="12928:13050" ph="INSERT INTO AllRegCorr... " />
-            <marker date="1569344905457" expanded="true" signature="26247:26289" ph="DELETE FROM AllRegCorr... " />
-            <marker date="1569344905457" expanded="true" signature="26352:26366" ph="SELECT * FRO... AllRegCorr" />
-            <marker date="1569344905457" expanded="true" signature="26430:26444" ph="SELECT * FRO... AllRegCorr" />
+            <marker date="1569764920058" expanded="true" signature="12948:13070" ph="INSERT INTO AllRegCorr... " />
+            <marker date="1569764920058" expanded="true" signature="26336:26378" ph="DELETE FROM AllRegCorr... " />
+            <marker date="1569764920058" expanded="true" signature="26441:26455" ph="SELECT * FRO... AllRegCorr" />
+            <marker date="1569764920058" expanded="true" signature="26519:26533" ph="SELECT * FRO... AllRegCorr" />
           </folding>
         </state>
       </provider>
@@ -497,7 +700,12 @@
         <state relative-caret-position="666">
           <caret line="37" column="31" lean-forward="false" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2906#2907#0" expanded="true" />
+            <element signature="e#2957#2958#0" expanded="true" />
+            <element signature="e#5053#5054#0" expanded="true" />
+            <element signature="e#5128#5129#0" expanded="true" />
+            <element signature="e#8539#9418#0" expanded="true" />
+            <element signature="e#9417#9418#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -523,10 +731,10 @@
         <state relative-caret-position="882">
           <caret line="61" column="26" lean-forward="false" selection-start-line="61" selection-start-column="26" selection-end-line="61" selection-end-column="26" />
           <folding>
-            <marker date="1569344905457" expanded="true" signature="12928:13050" ph="INSERT INTO AllRegCorr... " />
-            <marker date="1569344905457" expanded="true" signature="26247:26289" ph="DELETE FROM AllRegCorr... " />
-            <marker date="1569344905457" expanded="true" signature="26352:26366" ph="SELECT * FRO... AllRegCorr" />
-            <marker date="1569344905457" expanded="true" signature="26430:26444" ph="SELECT * FRO... AllRegCorr" />
+            <marker date="1569764920058" expanded="true" signature="12948:13070" ph="INSERT INTO AllRegCorr... " />
+            <marker date="1569764920058" expanded="true" signature="26336:26378" ph="DELETE FROM AllRegCorr... " />
+            <marker date="1569764920058" expanded="true" signature="26441:26455" ph="SELECT * FRO... AllRegCorr" />
+            <marker date="1569764920058" expanded="true" signature="26519:26533" ph="SELECT * FRO... AllRegCorr" />
           </folding>
         </state>
       </provider>
@@ -552,7 +760,12 @@
         <state relative-caret-position="666">
           <caret line="37" column="31" lean-forward="true" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2906#2907#0" expanded="true" />
+            <element signature="e#2957#2958#0" expanded="true" />
+            <element signature="e#5053#5054#0" expanded="true" />
+            <element signature="e#5128#5129#0" expanded="true" />
+            <element signature="e#8539#9418#0" expanded="true" />
+            <element signature="e#9417#9418#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -570,10 +783,10 @@
         <state relative-caret-position="882">
           <caret line="61" column="26" lean-forward="false" selection-start-line="61" selection-start-column="26" selection-end-line="61" selection-end-column="26" />
           <folding>
-            <marker date="1569344905457" expanded="true" signature="12928:13050" ph="INSERT INTO AllRegCorr... " />
-            <marker date="1569344905457" expanded="true" signature="26247:26289" ph="DELETE FROM AllRegCorr... " />
-            <marker date="1569344905457" expanded="true" signature="26352:26366" ph="SELECT * FRO... AllRegCorr" />
-            <marker date="1569344905457" expanded="true" signature="26430:26444" ph="SELECT * FRO... AllRegCorr" />
+            <marker date="1569764920058" expanded="true" signature="12948:13070" ph="INSERT INTO AllRegCorr... " />
+            <marker date="1569764920058" expanded="true" signature="26336:26378" ph="DELETE FROM AllRegCorr... " />
+            <marker date="1569764920058" expanded="true" signature="26441:26455" ph="SELECT * FRO... AllRegCorr" />
+            <marker date="1569764920058" expanded="true" signature="26519:26533" ph="SELECT * FRO... AllRegCorr" />
           </folding>
         </state>
       </provider>
@@ -587,10 +800,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Results_1.4 Spanish-English_ParseEqv_Fokin_S_B_All_rights_reserved1.txt" />
     <entry file="file://$PROJECT_DIR$/Results_1.4 Spanish-English_ParseEqv_Fokin_S_B_All_rights_reserved3.txt" />
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/parseeqv/ParseConstants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="27" column="36" lean-forward="false" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
+        <state relative-caret-position="126">
+          <caret line="7" column="37" lean-forward="false" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Results_1.4 Spanish-English_ParseEqv_Fokin_S_B_All_rights_reserved0.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5274">
+          <caret line="293" column="14" lean-forward="false" selection-start-line="293" selection-start-column="14" selection-end-line="293" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -603,42 +824,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/parseeqv/ParseConstants.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/parseeqv/EquiveFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="37" lean-forward="false" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+        <state relative-caret-position="558">
+          <caret line="49" column="76" lean-forward="false" selection-start-line="49" selection-start-column="76" selection-end-line="49" selection-end-column="76" />
+          <folding>
+            <element signature="e#2906#2907#0" expanded="true" />
+            <element signature="e#2957#2958#0" expanded="true" />
+            <element signature="e#5053#5054#0" expanded="true" />
+            <element signature="e#5128#5129#0" expanded="true" />
+            <element signature="e#8539#9418#0" expanded="true" />
+            <element signature="e#9417#9418#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="27" column="24" lean-forward="false" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/parseeqv/EquiveFrame.java">
+    <entry file="file://$PROJECT_DIR$/Results_1.4 Spanish-Ukrainian_ParseEqv_Fokin_S_B_All_rights_reserved0.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="526">
-          <caret line="378" column="54" lean-forward="false" selection-start-line="378" selection-start-column="54" selection-end-line="378" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/parseeqv/SearchEquive.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-42">
-          <caret line="424" column="0" lean-forward="false" selection-start-line="424" selection-start-column="0" selection-end-line="424" selection-end-column="0" />
+        <state relative-caret-position="17">
+          <caret line="452" column="49" lean-forward="true" selection-start-line="452" selection-start-column="49" selection-end-line="452" selection-end-column="49" />
           <folding>
-            <marker date="1569344905457" expanded="true" signature="12928:13050" ph="INSERT INTO AllRegCorr... " />
-            <marker date="1569344905457" expanded="true" signature="26247:26289" ph="DELETE FROM AllRegCorr... " />
-            <marker date="1569344905457" expanded="true" signature="26352:26366" ph="SELECT * FRO... AllRegCorr" />
-            <marker date="1569344905457" expanded="true" signature="26430:26444" ph="SELECT * FRO... AllRegCorr" />
+            <marker date="1569764920058" expanded="true" signature="12948:13070" ph="INSERT INTO AllRegCorr... " />
+            <marker date="1569764920058" expanded="true" signature="26336:26378" ph="DELETE FROM AllRegCorr... " />
+            <marker date="1569764920058" expanded="true" signature="26441:26455" ph="SELECT * FRO... AllRegCorr" />
+            <marker date="1569764920058" expanded="true" signature="26519:26533" ph="SELECT * FRO... AllRegCorr" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Results_1.4 Spanish-English_ParseEqv_Fokin_S_B_All_rights_reserved0.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="582">
-          <caret line="293" column="14" lean-forward="true" selection-start-line="293" selection-start-column="14" selection-end-line="293" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>

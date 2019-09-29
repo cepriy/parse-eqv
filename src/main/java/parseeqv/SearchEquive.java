@@ -232,8 +232,8 @@ class SearchEquive {
 
         File forig = new File(pathorig);
         File ftrans = new File(pathtrans);
-        Scanner sc1 = new Scanner(forig);
-        Scanner sc2 = new Scanner(ftrans);
+        Scanner sc1 = new Scanner(forig, "UTF-16");
+        Scanner sc2 = new Scanner(ftrans, "UTF-16");
 
         while (sc1.hasNext() && sc2.hasNext()) {
             String orig = sc1.nextLine();
@@ -458,10 +458,14 @@ class SearchEquive {
             throw new RuntimeException(e);
         }
 
-        if (Desktop.isDesktopSupported()) {
-            Desktop.getDesktop().edit(fl);
-        } else {
-            JOptionPane.showMessageDialog(EquiveFrame.pnlorig, "DESKTOP NOT SUPPORTED. CAN'T OPEN THE FILE");
+
+
+        if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+            String cmd = "rundll32 url.dll,FileProtocolHandler " + fl.getCanonicalPath();
+            Runtime.getRuntime().exec(cmd);
+        }
+        else {
+            Desktop.getDesktop().open(fl);
         }
     }
 
