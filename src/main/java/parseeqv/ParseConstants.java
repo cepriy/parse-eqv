@@ -5,7 +5,7 @@ package parseeqv;
  */
 class ParseConstants {
     static final String forHumanUser="For human user";
-    static final String  RetreiveEquivesButtonStr = "Reteive automatically";
+    static final String  RetreiveEquivesButtonStr = "Retrieve automatically";
     static final String StartButtonStr = "Start";
     static final String newSessionButtonStr = "New session";
     static final String originalFileButtonStr = "Original file";

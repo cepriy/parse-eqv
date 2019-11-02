@@ -2,8 +2,6 @@ package parseeqv;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,7 +24,6 @@ class SearchEquive {
     public static boolean newSessionListenerAdded = false;
 
     public static Connection conn;
-    public static Statement statmt2;
     public static ResultSet resSet2;
 
     // public static boolean areKeyWords=false;
@@ -54,8 +51,6 @@ class SearchEquive {
     public static int splittedFragmLength = 35;
     public static boolean maintainCommas = false;
 
-    public static Statement stmt;
-
     public static String curTable = "AllRegCorr";
     public static String curField1;
     public static String curField2;
@@ -71,16 +66,13 @@ class SearchEquive {
     public static TreeMap<String, Integer> potentialEquivToBeAnalyzed = new TreeMap<>();
     public static String RegCorrespondances[][] = new String[1000][2];
 
-    public static void Conn() throws ClassNotFoundException, SQLException {
-
-        conn = null;
+    public void getConnection() throws ClassNotFoundException, SQLException {
         Class.forName("org.sqlite.JDBC");
         conn = DriverManager.getConnection("jdbc:sqlite:TextsBiling");
     }
 
-    public static void DB() throws ClassNotFoundException, SQLException {
+    public static void DB() {
         showedEquivNum = 0;
-        statmt2 = conn.createStatement();
     }
 
 
@@ -102,7 +94,7 @@ class SearchEquive {
     }
 
     public static String CleanExpression(String expression) {
-        if (Registr == false) expression = expression.toLowerCase();
+        if (!Registr) expression = expression.toLowerCase();
 
         String strTemp = "";
         int i = 0;
@@ -131,7 +123,7 @@ class SearchEquive {
             }
     }
 
-    public static void analyzeSplitPhrases() throws IOException {
+    public static void analyzeSplitPhrases() {
 
         for (int i = 0; i < hMapOrTr.size(); i++) {
             String orig = (String) hMapOrTr.keySet().toArray()[i];
@@ -170,7 +162,7 @@ class SearchEquive {
     }
 
     public static String firstCharToLowerCase(String string) {
-        char c[] = string.toCharArray();
+        char[] c = string.toCharArray();
         c[0] = Character.toLowerCase(c[0]);
         string = new String(c);
         return string;
@@ -199,15 +191,14 @@ class SearchEquive {
         String[] keyTermstrans = sentenceTr.split(", ");
 
         for (int i = 0; i < keyTermsorig.length && i < keyTermstrans.length; i++) {
-            int k = i;
             if (i == 0) {
                 for (int f = 0; f < ParseConstants.keyWordsNames.length; f++) // DELETES "Keywords" and similar from equivalents
                 {
                     keyTermsorig[i] = keyTermsorig[i].replace(ParseConstants.keyWordsNames[f], "");
-                    keyTermstrans[k] = keyTermstrans[k].replace(ParseConstants.keyWordsNames[f], "");
+                    keyTermstrans[i] = keyTermstrans[i].replace(ParseConstants.keyWordsNames[f], "");
                 }
             }
-            hMapOrTr.put(keyTermsorig[i], keyTermstrans[k]);
+            hMapOrTr.put(keyTermsorig[i], keyTermstrans[i]);
         }
     }
 
@@ -271,7 +262,7 @@ class SearchEquive {
         }
     }
 
-    public static void readOriginalTranslFilesCsv() throws ClassNotFoundException, SQLException, IOException {
+    public static void readOriginalTranslFilesCsv() throws IOException {
 
         File flCSV = new File(pathorig);
         Scanner sc = new Scanner(flCSV);
@@ -297,8 +288,9 @@ class SearchEquive {
         Object key = potentialEquivToBeAnalyzed.keySet().toArray()[count];
         int coince = potentialEquivToBeAnalyzed.get(potentialEquivToBeAnalyzed.keySet().toArray()[count]);
 
-        if (coince < iCoinceNum) initFieldWithCurrentEquivSet(++analyzedEquivalenceCount);
-        else {
+        if (coince < iCoinceNum) {
+            initFieldWithCurrentEquivSet(++analyzedEquivalenceCount);
+        } else {
             String str = (String) key;
             String[] set = str.split("#");
             EquiveFrame.orig.setText(set[0]);
@@ -307,7 +299,6 @@ class SearchEquive {
     }
 
     public static void saveUserEquiveToDatabase(String origEqv, String transEqv) throws SQLException {
-        stmt = conn.createStatement();
         PreparedStatement statement = conn.prepareStatement(
                 "INSERT INTO " + curTable + " (" + curField1 + "," + curField2 + ")    " +
                         "            VALUES(?,?)");
@@ -318,12 +309,12 @@ class SearchEquive {
         RegCorrespondances[regEqCount][1] = origEqv;
         regCorrAmount++;
         regEqCount++;
-        stmt.close();
     }
 
     public static void finishUserAnalysis() {
-        if (!EquiveFrame.forHumanUser.isSelected())
+        if (!EquiveFrame.forHumanUser.isSelected()) {
             forHumanUser = false;// CONNECT AGAIN RECURSION WHEN DOING PRELIMINAR ANALYSIS
+        }
         EquiveFrame.btAccept.setEnabled(false);
         EquiveFrame.btIgnore.setEnabled(false);
         GetRegCorrespondances();
@@ -364,22 +355,11 @@ class SearchEquive {
         EquiveFrame.btIgnore.setEnabled(true);
         EquiveFrame.btAccept.setEnabled(true);
         if (!bAcceptListner) {
-            EquiveFrame.btAccept.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    acceptBtnActions();
-                }
-            });
+            EquiveFrame.btAccept.addActionListener(e -> acceptBtnActions());
         }
 
         if (!bIgnoreListner) {
-            EquiveFrame.btIgnore.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-
-                    ignoreButtonActions();
-                }
-            });
+            EquiveFrame.btIgnore.addActionListener(e -> ignoreButtonActions());
         }
     }
 
@@ -402,16 +382,12 @@ class SearchEquive {
             JOptionPane.showMessageDialog(EquiveFrame.pnlorig, "NO SQL1");
         }
 
-        if (!btSavedLstnr) EquiveFrame.btSaveAutomatic.addActionListener(new ActionListener() {
-            @Override
-
-            public void actionPerformed(ActionEvent e) {
-                btSavedLstnr = true;
-                try {
-                    saveResults(EquiveFrame.res, EquiveFrame.fileResults);
-                } catch (IOException e4) {
-                    JOptionPane.showMessageDialog(EquiveFrame.pnlorig, "NO FILE");
-                }
+        if (!btSavedLstnr) EquiveFrame.btSaveAutomatic.addActionListener(e -> {
+            btSavedLstnr = true;
+            try {
+                saveResults(EquiveFrame.res, EquiveFrame.fileResults);
+            } catch (IOException e4) {
+                JOptionPane.showMessageDialog(EquiveFrame.pnlorig, "NO FILE");
             }
         });
 
@@ -419,12 +395,12 @@ class SearchEquive {
     }
 
 
-    public static void saveResults(PrintWriter prWr, File fl) throws IOException {
+    public static void saveResults(PrintWriter prWr, File file) throws IOException {
 
         savedFileCounter++;
         try {
-            if (!fl.exists()) {
-                fl.createNewFile();
+            if (!file.exists()) {
+                file.createNewFile();
             }
 
             int countEquiv = 0;
@@ -450,7 +426,7 @@ class SearchEquive {
 
             } finally {
                 prWr.close();
-                System.out.println("File saved");
+                System.out.println("File " + file.getAbsolutePath() + " saved");
             }
 
         } catch (IOException e) {
@@ -461,11 +437,11 @@ class SearchEquive {
 
 
         if (System.getProperty("os.name").toLowerCase().contains("windows")) {
-            String cmd = "rundll32 url.dll,FileProtocolHandler " + fl.getCanonicalPath();
+            String cmd = "rundll32 url.dll,FileProtocolHandler " + file.getCanonicalPath();
             Runtime.getRuntime().exec(cmd);
         }
         else {
-            Desktop.getDesktop().open(fl);
+            Desktop.getDesktop().open(file);
         }
     }
 
@@ -609,18 +585,16 @@ class SearchEquive {
         curField1 = EquiveFrame.combLang1.getSelectedItem().toString().toUpperCase(); //TELLING THE FIELD NAME WHICH IS THE SAME AS THE NAME OF A DROP-OUT LIST ITEM BUT IN SMALL LETTERS
         curField2 = EquiveFrame.combLang2.getSelectedItem().toString().toUpperCase();
 
-        try {
+        try (final Statement statement = conn.createStatement()) {
             regEqCount = 0;
             String strRegAmount = regCorrAmount + 1 + "";
-            int deletedRows = statmt2.executeUpdate("DELETE FROM " + curTable + " WHERE rowid >" + strRegAmount);
-            resSet2 = statmt2.executeQuery("SELECT * FROM " + curTable + "");
-            resSet2 = statmt2.executeQuery("SELECT * FROM " + curTable + "");
+            int deletedRows = statement.executeUpdate("DELETE FROM " + curTable + " WHERE rowid >" + strRegAmount);
+            resSet2 = statement.executeQuery("SELECT * FROM " + curTable + "");
             while (resSet2.next()) {
                 RegCorrespondances[regEqCount][0] = reduceNotionalWord(resSet2.getString(curField1));
                 RegCorrespondances[regEqCount][1] = reduceNotionalWord(resSet2.getString(curField2));
                 regEqCount++;
             }
-            statmt2.close();
         } catch (SQLException e4) {
             JOptionPane.showMessageDialog(EquiveFrame.pnlorig, "NO CLASS JDBC 1");
         }

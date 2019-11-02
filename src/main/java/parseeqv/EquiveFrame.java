@@ -2,8 +2,6 @@ package parseeqv;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -15,9 +13,7 @@ import java.sql.SQLException;
 /**
  * Created by Sergiy on 21.12.2017.
  */
-class EquiveFrame {
-
-    public static JFrame Fr = new JFrame("ParseEqv 1.0 || Fokin.S.B. ©");
+class EquiveFrame extends JFrame {
     public static JButton btSaveExit = new JButton("Save and Exit");
     public static JTextArea orig = new JTextArea(2, 30);
     public static JTextArea trans = new JTextArea(2, 30);
@@ -49,7 +45,7 @@ class EquiveFrame {
     static JComboBox combEquiveLength = new JComboBox(ParseConstants.equiveLengthArray);
     static JComboBox combFileType = new JComboBox(ParseConstants.fileTypes);
 
-    public static void setFrameOptions() {
+    public void setFrameOptions() {
         combEquiveLength.setSelectedIndex(5);
         EquiveFrame.combLang1.setSelectedIndex(0);
         EquiveFrame.combLang2.setSelectedIndex(1);
@@ -68,115 +64,110 @@ class EquiveFrame {
 
     }
 
-    public static void createFrame() throws IOException {
-        final Thread t1 = new Thread(new Runnable() {
-            public void run() {
-                MainBlock.onStart();
-            }
-        });
+    public void run() {
+        final Thread t1 = new Thread(MainBlock::onStart);
 
-        Fr.setBackground(Color.RED);
-        Fr.setBackground(new Color(0, 0, 0));
-        Fr.setOpacity(1);
+        this.setTitle("ParseEqv 1.0 || Fokin.S.B. ©");
+        this.setBackground(Color.RED);
+        this.setBackground(new Color(0, 0, 0));
+        this.setOpacity(1);
         trans.setBackground(Color.orange);
         orig.setBackground(Color.YELLOW);
 
         SearchEquive.forHumanUser = false;
         forHumanUser.setText(ParseConstants.forHumanUser);
-        if (!btStartListenerAdded) btStart.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println(SearchEquive.curField1);
-                //    JOptionPane.showMessageDialog(parseeqv.SearchEquive.pnlorig, parseeqv.SearchEquive.curField1);
+        if (!btStartListenerAdded) btStart.addActionListener(e -> {
+            System.out.println(SearchEquive.curField1);
+            //    JOptionPane.showMessageDialog(parseeqv.SearchEquive.pnlorig, parseeqv.SearchEquive.curField1);
 
-                //     JOptionPane.showMessageDialog(parseeqv.SearchEquive.pnlorig, parseeqv.SearchEquive.curField2);
+            //     JOptionPane.showMessageDialog(parseeqv.SearchEquive.pnlorig, parseeqv.SearchEquive.curField2);
 
-                btStartListenerAdded = true;
+            btStartListenerAdded = true;
 
-                if (EquiveFrame.combCoefficient.getSelectedItem().equals("1.35"))
-                    SearchEquive.acceptableCoefficientDifference = 1.35;
-                if (EquiveFrame.combCoefficient.getSelectedItem().equals("1.40"))
-                    SearchEquive.acceptableCoefficientDifference = 1.40;
-                if (EquiveFrame.combCoefficient.getSelectedItem().equals("1.45"))
-                    SearchEquive.acceptableCoefficientDifference = 1.45;
-
-                System.out.println("Coeff: " + SearchEquive.acceptableCoefficientDifference);
-                fileResults = new File("Results_" + SearchEquive.acceptableCoefficientDifference + " " + EquiveFrame.combLang1.getSelectedItem() + "-" + EquiveFrame.combLang2.getSelectedItem() + "_ParseEqv_Fokin_S_B_All_rights_reserved" + SearchEquive.savedFileCounter + ".txt");
-
-                try {
-                    res = new PrintWriter(fileResults.getAbsolutePath());
-                } catch (FileNotFoundException e12) {
-                    JOptionPane.showMessageDialog(pnlorig, "Problems when writing to file");
-                }
-
-                if (t1.isAlive()) t1.interrupt();
-                else {
-                    Thread t1 = new Thread(new Runnable() {
-                        public void run() {
-                            MainBlock.onStart();
-                        }
-                    });
-                    t1.setName("stop_listener");
-                    t1.start();
-                }
-                if (EquiveFrame.combLang1.getSelectedItem() == EquiveFrame.combLang2.getSelectedItem())
-                    JOptionPane.showMessageDialog(pnlorig, "original and translational languages should differ");
-                btNewSession.setText("STOP");
-                btNewSession.setBackground(Color.RED);
-
-                if (combEquiveLength.getSelectedIndex() == 0) SearchEquive.iMaxEquivLength = 40;
-                if (combEquiveLength.getSelectedIndex() == 1) SearchEquive.iMaxEquivLength = 50;
-                if (combEquiveLength.getSelectedIndex() == 2) SearchEquive.iMaxEquivLength = 60;
-                if (combEquiveLength.getSelectedIndex() == 3) SearchEquive.iMaxEquivLength = 70;
-                if (combEquiveLength.getSelectedIndex() == 4) SearchEquive.iMaxEquivLength = 80;
-                if (combEquiveLength.getSelectedIndex() == 5) SearchEquive.iMaxEquivLength = 90;
-                if (combEquiveLength.getSelectedIndex() == 6) SearchEquive.iMaxEquivLength = 100;
-                if (combEquiveLength.getSelectedIndex() == 7) SearchEquive.iMaxEquivLength = 110;
-                if (combEquiveLength.getSelectedIndex() == 8) SearchEquive.iMaxEquivLength = 240;
-                if (combFileType.getSelectedIndex() == 1) {
-                    SearchEquive.txtTypeSelected = false;
-                    EquiveFrame.btChoosetrans.setEnabled(false);
-                }
-                if (combFileType.getSelectedIndex() == 0) SearchEquive.txtTypeSelected = true;
+            if ("1.35".equals(EquiveFrame.combCoefficient.getSelectedItem())) {
+                SearchEquive.acceptableCoefficientDifference = 1.35;
             }
+            if ("1.40".equals(EquiveFrame.combCoefficient.getSelectedItem())) {
+                SearchEquive.acceptableCoefficientDifference = 1.40;
+            }
+            if ("1.45".equals(EquiveFrame.combCoefficient.getSelectedItem())) {
+                SearchEquive.acceptableCoefficientDifference = 1.45;
+            }
+
+            System.out.println("Coeff: " + SearchEquive.acceptableCoefficientDifference);
+            fileResults = new File("Results_" + SearchEquive.acceptableCoefficientDifference + " " + EquiveFrame.combLang1.getSelectedItem() + "-" + EquiveFrame.combLang2.getSelectedItem() + "_ParseEqv_Fokin_S_B_All_rights_reserved" + SearchEquive.savedFileCounter + ".txt");
+
+            try {
+                res = new PrintWriter(fileResults.getAbsolutePath());
+            } catch (FileNotFoundException e12) {
+                JOptionPane.showMessageDialog(pnlorig, "Problems when writing to file");
+            }
+
+            if (t1.isAlive()) {
+                t1.interrupt();
+            } else {
+                Thread t11 = new Thread(MainBlock::onStart);
+                t11.setName("stop_listener");
+                t11.start();
+            }
+            if (EquiveFrame.combLang1.getSelectedItem() == EquiveFrame.combLang2.getSelectedItem())
+                JOptionPane.showMessageDialog(pnlorig, "original and translational languages should differ");
+            btNewSession.setText("STOP");
+            btNewSession.setBackground(Color.RED);
+
+            if (combEquiveLength.getSelectedIndex() == 0) SearchEquive.iMaxEquivLength = 40;
+            if (combEquiveLength.getSelectedIndex() == 1) SearchEquive.iMaxEquivLength = 50;
+            if (combEquiveLength.getSelectedIndex() == 2) SearchEquive.iMaxEquivLength = 60;
+            if (combEquiveLength.getSelectedIndex() == 3) SearchEquive.iMaxEquivLength = 70;
+            if (combEquiveLength.getSelectedIndex() == 4) SearchEquive.iMaxEquivLength = 80;
+            if (combEquiveLength.getSelectedIndex() == 5) SearchEquive.iMaxEquivLength = 90;
+            if (combEquiveLength.getSelectedIndex() == 6) SearchEquive.iMaxEquivLength = 100;
+            if (combEquiveLength.getSelectedIndex() == 7) SearchEquive.iMaxEquivLength = 110;
+            if (combEquiveLength.getSelectedIndex() == 8) SearchEquive.iMaxEquivLength = 240;
+            if (combFileType.getSelectedIndex() == 1) {
+                SearchEquive.txtTypeSelected = false;
+                EquiveFrame.btChoosetrans.setEnabled(false);
+            }
+            if (combFileType.getSelectedIndex() == 0) SearchEquive.txtTypeSelected = true;
         });
 
         if (!SearchEquive.newSessionListenerAdded) {
-            btNewSession.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent event) {
-                    if (btNewSession.getText().equals(ParseConstants.clearSessionStr))
-                        setFrameOptions();
+            btNewSession.addActionListener(event -> {
+                if (btNewSession.getText().equals(ParseConstants.clearSessionStr)) {
+                    setFrameOptions();
+                }
+                SearchEquive.analyzedEquivalenceCount = 0;
+                SearchEquive.newSessionListenerAdded = true;
+                btSaveAutomatic.setEnabled(false);
+                btSaveAutomatic.setBackground(Color.LIGHT_GRAY);
+                btStart.setEnabled(false);
+                if (t1.isAlive()) {
+                    t1.interrupt();
+                }
 
-                    SearchEquive.analyzedEquivalenceCount = 0;
-                    SearchEquive.newSessionListenerAdded = true;
-                    btSaveAutomatic.setEnabled(false);
-                    btSaveAutomatic.setBackground(Color.LIGHT_GRAY);
-                    btStart.setEnabled(false);
-                    if (t1.isAlive()) t1.interrupt();
+                orig.setText("");
+                trans.setText("");
 
-                    orig.setText("");
-                    trans.setText("");
-
-                    SearchEquive.hMapOrTr.clear();
-                    SearchEquive.potentialEquivToBeAnalyzed.clear();
-                    SearchEquive.bAcceptListner = false;
-                    SearchEquive.bIgnoreListner = false;
-                    SearchEquive.bSaveExit = false;
-                    if (btNewSession.getText() != "STOP") btStart.setEnabled(true);
-                    btNewSession.setText(ParseConstants.newSessionButtonStr);
-                    btNewSession.setBackground(Color.LIGHT_GRAY);
-                    if (btNewSession.getText().equals(ParseConstants.newSessionButtonStr)) {
-                        System.out.println(ParseConstants.newSessionButtonStr);
-                        System.out.println(btNewSession.getText());
-                        btNewSession.setText(ParseConstants.clearSessionStr);
-                    }
+                SearchEquive.hMapOrTr.clear();
+                SearchEquive.potentialEquivToBeAnalyzed.clear();
+                SearchEquive.bAcceptListner = false;
+                SearchEquive.bIgnoreListner = false;
+                SearchEquive.bSaveExit = false;
+                if (!btNewSession.getText().equals("STOP")) {
+                    btStart.setEnabled(true);
+                }
+                btNewSession.setText(ParseConstants.newSessionButtonStr);
+                btNewSession.setBackground(Color.LIGHT_GRAY);
+                if (btNewSession.getText().equals(ParseConstants.newSessionButtonStr)) {
+                    System.out.println(ParseConstants.newSessionButtonStr);
+                    System.out.println(btNewSession.getText());
+                    btNewSession.setText(ParseConstants.clearSessionStr);
                 }
             });
         }
 
-        Fr.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        Fr.addWindowListener(new WindowAdapter() {
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent we) {
                 String ObjButtons[] = {ParseConstants.yesStr, ParseConstants.noStr};
@@ -195,10 +186,10 @@ class EquiveFrame {
                 }
             }
         });
-        Fr.setLocationRelativeTo(null);
-        Fr.setBounds(400, 200, 700, 490);
-        Fr.setResizable(true);
-        Fr.add(pnlorig);
+        this.setLocationRelativeTo(null);
+        this.setBounds(400, 200, 700, 490);
+        this.setResizable(true);
+        this.add(pnlorig);
         JPanel pnlStartComb = new JPanel();
         pnlStartComb.setBackground(Color.DARK_GRAY);
 
@@ -284,19 +275,17 @@ class EquiveFrame {
 
         btSaveAutomatic.setEnabled(false);
 
-        if (!SearchEquive.bSaveExit) btSaveExit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        if (!SearchEquive.bSaveExit) {
+            btSaveExit.addActionListener(e -> {
                 res.close();
                 System.exit(0);
-            }
-        });
+            });
+        }
 
-        Fr.setVisible(true);
+        this.setVisible(true);
 
-        if (!SearchEquive.bActiobLisChooser) btChooseorig.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        if (!SearchEquive.bActiobLisChooser) {
+            btChooseorig.addActionListener(e -> {
                 SearchEquive.bActiobLisChooser = true;
 
                 if (EquiveFrame.combFileType.getSelectedIndex() == 0) btChoosetrans.setEnabled(true);
@@ -316,12 +305,11 @@ class EquiveFrame {
                     System.out.println("No Selection ");
                 }
                 SearchEquive.pathorig = SearchEquive.chooser.getSelectedFile().getAbsolutePath();
-            }
-        });
+            });
+        }
 
-        if (!SearchEquive.bActiobLisChooser) btChoosetrans.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        if (!SearchEquive.bActiobLisChooser) {
+            btChoosetrans.addActionListener(e -> {
                 SearchEquive.bActiobLisChooser = true;
 
                 File workingDirectory = new File(System.getProperty("user.dir"));
@@ -338,13 +326,14 @@ class EquiveFrame {
                     System.out.println("Aucune sélection n'a été réalisée");
                 }
                 SearchEquive.pathtrans = SearchEquive.chooser.getSelectedFile().getAbsolutePath();
-            }
-        });
+            });
+        }
     }
 }
 
 class MainBlock {
     public static void onStart() {
+        SearchEquive searchEquive = new SearchEquive();
 
         if (EquiveFrame.forHumanUser.isSelected()) SearchEquive.forHumanUser = true;
 
@@ -356,8 +345,8 @@ class MainBlock {
             EquiveFrame.btStart.setEnabled(true);
         } else {
             try {
-                SearchEquive.Conn();
-                SearchEquive.DB();
+                searchEquive.getConnection();
+                searchEquive.DB();
               if (EquiveFrame.prevAnalysisChecqbx.isSelected())  SearchEquive.forHumanUser=true;// DISCONNECT RECURSION WHEN DOING PRELIMINAR ANALYSIS
                 SearchEquive.GetRegCorrespondances();
                 if (SearchEquive.txtTypeSelected) SearchEquive.readOriginalTranslFilesTxt();
