@@ -29,10 +29,10 @@ public class Parse {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date current = new Date();
         System.out.println(dateFormat.format(current)); //2014/08/06 15:59:48
-        Date limitDate = new SimpleDateFormat("yyyy/MM/dd").parse("2020/12/9");
+        Date limitDate = new SimpleDateFormat("yyyy/MM/dd").parse("2022/12/9");
         System.out.println(dateFormat.format(limitDate));
         if (current.after(limitDate)) {
-            File f = new File("TextsBiling");
+            File f = new File("CorrespondancesDB");
             f.delete();
             JOptionPane.showMessageDialog(EquiveFrame.pnlorig, "Wy are sorry, the term of academic patent has expired");
             System.out.println("After");

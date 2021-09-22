@@ -18,7 +18,7 @@ class ParseConstants {
     static final String resultsSavedStr = "Results saved";
     static final String[] keyWordsMarkers = {"Ключові", "Ключевые", "Clave", "Palabra", "Mots", "Parole", "Key", "Keywords", "Key-words"};
     static final String[] keyWordsNames = {"Ключові слова: ","Ключові слова", "Ключевые слова", "Ключові",  "Ключевые", "Palabras", "Palabras", "Mots clé:", "Parole chiave:", "Parole chiavi:", "Key words: ","Key words:", "Keywords: ", "Keywords:", "Key-words:", "Key"};
-    static final String[] arrCombLang = {"Spanish", "English", "French", "Italian", "Ukrainian", "Russian",  "Polish"};
+    static final String[] arrCombLang = {"Spanish", "English", "French", "Italian", "Ukrainian", "Russian",  "Polish", "Portuguese"};
     static final String [] arrCoefficients = {"1.35", "1.40", "1.45"};
     static final String[] equiveLengthArray = {"40", "50", "60", "70", "80", "90", "100", "110", "MAX"};
     static final String[] fileTypes = {"TXT", "CSV"};

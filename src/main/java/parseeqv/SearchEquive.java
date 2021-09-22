@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -35,20 +36,21 @@ class SearchEquive {
     public static int amountOfMatches = 0;
 
     // Filtry
-    public static int regCorrAmount = 171;
+    public static int regCorrAmount;
+    public static int additionalRegCorrCounter = 0;
     public static int maxAmountToBeAnalyzedByUser = 77;
     public static int iMaxEquivLength = 105;
     public static double acceptableCoefficientDifference = 1.42;
     public static int showedEquivNum = 0;
     public static boolean Registr = true;
-    public static int iCoinceNum = 3;
-    public static int shortSentenceLength = 24;
+    public static int iMinCoincidenceNum = 4;
+    public static int shortSentenceLimit = 10;
     public static short minSentenceLength = 5;
-    public static boolean shortSentncsAreInclAutoumatically = true;
+    public static boolean optionIncludeShortSentencesAutomatically = true;
     public static boolean forHumanUser = false;
     public static int lengthForRecursionLimit = 30;
-    public static int contextDepth = 5;
-    public static int splittedFragmLength = 35;
+    public static int contextDepth = 7;
+    public static int splittedFragmLength = 60;
     public static boolean maintainCommas = false;
 
     public static String curTable = "AllRegCorr";
@@ -62,13 +64,13 @@ class SearchEquive {
     public static boolean bAcceptListner = false;
     public static boolean bIgnoreListner = false;
     public static boolean bSaveExit = false;
-    public static int regEqCount = 0;
+    public static int totalRegEqCount = 0;
     public static TreeMap<String, Integer> potentialEquivToBeAnalyzed = new TreeMap<>();
-    public static String RegCorrespondances[][] = new String[1000][2];
+    public static TreeMap<String, String> mapRegCorrespondances = new TreeMap();
 
     public void getConnection() throws ClassNotFoundException, SQLException {
         Class.forName("org.sqlite.JDBC");
-        conn = DriverManager.getConnection("jdbc:sqlite:TextsBiling");
+        conn = DriverManager.getConnection("jdbc:sqlite:CorrespondancesDB");
     }
 
     public static void DB() {
@@ -114,49 +116,52 @@ class SearchEquive {
         return strTemp;
     }
 
-    public static void saveIfEqualString(String a, String b) {
-        if (a.equals(b))
-            try {
-                saveUserEquiveToDatabase(a, b);
-            } catch (SQLException e4) {
-                JOptionPane.showMessageDialog(EquiveFrame.pnlorig, "NO SQL");
-            }
+    public static void saveIfEqualString(String origFragment, String transFragment) {
+
+
+        mapRegCorrespondances.put(origFragment, transFragment);
+
+        additionalRegCorrCounter++;
+
+        totalRegEqCount++;
     }
 
     public static void analyzeSplitPhrases() {
 
         for (int i = 0; i < hMapOrTr.size(); i++) {
-            String orig = (String) hMapOrTr.keySet().toArray()[i];
+            System.out.println("Sentences size "+hMapOrTr.size());
+            String orig = (String) hMapOrTr.keySet().toArray()[i].toString().toLowerCase();
             String[] phrorig = orig.split(" ");
-            String trans = hMapOrTr.get(hMapOrTr.keySet().toArray()[i]);
+            String trans = hMapOrTr.get(hMapOrTr.keySet().toArray()[i]).toLowerCase();
             String[] phrtrans = trans.split(" ");
-            if (orig.length() < splittedFragmLength && trans.length() < splittedFragmLength)// little fragments a more like to give precise results
+            if (orig.length() < splittedFragmLength && trans.length() < splittedFragmLength)// little fragments a more likely to give precise results
                 analyzeCurrentSplittedSentence(phrorig, phrtrans);
 
         }
     }
 
     public static void analyzeCurrentSplittedSentence(String[] phrorig, String[] phrtrans) {
-        int k = phrorig.length;
-        int l = phrtrans.length;
+        int phr_orig_lngth = phrorig.length;
+        int phr_transl_lngth = phrtrans.length;
 
-        for (int c = 0; c < k; c++) {
+        for (int orig_count = 0; orig_count < phr_orig_lngth; orig_count++) {
 
-            for (int d = 0; d < contextDepth && d < l; d++) {
-                if (isValidEquivalent(phrorig[c], phrtrans[d])) sortPotential(phrorig[c] + "#" + phrtrans[d]);
-                if (c < (k - 2) && isValidEquivalent(phrorig[c] + " " + phrorig[c + 1], phrtrans[d]))
-                    sortPotential(phrorig[c] + " " + phrorig[c + 1] + "#" + phrtrans[d]);
-                if (c < (k - 2) && d < (l - 2) && isValidEquivalent(phrorig[c] + " " + phrorig[c + 1], phrtrans[d] + " " + phrtrans[d + 1]))
-                    sortPotential(phrorig[c] + " " + phrorig[c + 1] + "#" + phrtrans[d] + " " + phrtrans[d + 1]);
-                if (d < (l - 2) && isValidEquivalent(phrorig[c], phrtrans[d] + " " + phrtrans[d + 1]))
-                    sortPotential(phrorig[c] + "#" + phrtrans[d] + " " + phrtrans[d + 1]);
-                if (d < (l - 2) && isValidEquivalent(phrorig[c], phrtrans[d + 1]))
-                    sortPotential(phrorig[c] + "#" + phrtrans[d + 1]);
-                if (c < (k - 2) && isValidEquivalent(phrorig[c + 1], phrtrans[d]))
-                    sortPotential(phrorig[c + 1] + "#" + phrtrans[d]);
-                saveIfEqualString(phrorig[c], phrtrans[d]);
-                if (d < (l - 2)) saveIfEqualString(phrorig[c], phrtrans[d + 1]);
-                if (c < (k - 2)) saveIfEqualString(phrorig[c + 1], phrtrans[d]);
+            for (int transl_count = 0; transl_count < contextDepth && transl_count < phr_transl_lngth; transl_count++) {
+                if (isValidEquivalent(phrorig[orig_count], phrtrans[transl_count]))
+                    sortPotential(phrorig[orig_count] + "#" + phrtrans[transl_count]);
+                if (orig_count < (phr_orig_lngth - 2) && isValidEquivalent(phrorig[orig_count] + " " + phrorig[orig_count + 1], phrtrans[transl_count]))
+                    sortPotential(phrorig[orig_count] + " " + phrorig[orig_count + 1] + "#" + phrtrans[transl_count]);
+                if (orig_count < (phr_orig_lngth - 2) && transl_count < (phr_transl_lngth - 2) && isValidEquivalent(phrorig[orig_count] + " " + phrorig[orig_count + 1], phrtrans[transl_count] + " " + phrtrans[transl_count + 1]))
+                    sortPotential(phrorig[orig_count] + " " + phrorig[orig_count + 1] + "#" + phrtrans[transl_count] + " " + phrtrans[transl_count + 1]);
+                if (transl_count < (phr_transl_lngth - 2) && isValidEquivalent(phrorig[orig_count], phrtrans[transl_count] + " " + phrtrans[transl_count + 1]))
+                    sortPotential(phrorig[orig_count] + "#" + phrtrans[transl_count] + " " + phrtrans[transl_count + 1]);
+                if (transl_count < (phr_transl_lngth - 2) && isValidEquivalent(phrorig[orig_count], phrtrans[transl_count + 1]))
+                    sortPotential(phrorig[orig_count] + "#" + phrtrans[transl_count + 1]);
+                if (orig_count < (phr_orig_lngth - 2) && isValidEquivalent(phrorig[orig_count + 1], phrtrans[transl_count]))
+                    sortPotential(phrorig[orig_count + 1] + "#" + phrtrans[transl_count]);
+                saveIfEqualString(phrorig[orig_count], phrtrans[transl_count]);
+                if (transl_count < (phr_transl_lngth - 2)) saveIfEqualString(phrorig[orig_count], phrtrans[transl_count + 1]);
+                if (orig_count < (phr_orig_lngth - 2)) saveIfEqualString(phrorig[orig_count + 1], phrtrans[transl_count]);
             }
         }
     }
@@ -203,7 +208,7 @@ class SearchEquive {
     }
 
     public static void includeShortSentencesAutomatically(String orig, String trans) {
-        if (orig.length() < shortSentenceLength && orig.length() > minSentenceLength && trans.length() < shortSentenceLength && trans.length() > minSentenceLength) {
+        if (orig.length() < shortSentenceLimit && orig.length() > minSentenceLength && trans.length() < shortSentenceLimit && trans.length() > minSentenceLength) {
             hMapOrTr.put(firstCharToLowerCase(CleanExpression(orig)), firstCharToLowerCase(CleanExpression(trans)));
         }
     }
@@ -223,28 +228,29 @@ class SearchEquive {
 
         File forig = new File(pathorig);
         File ftrans = new File(pathtrans);
-        Scanner sc1 = new Scanner(forig, "UTF-16");
-        Scanner sc2 = new Scanner(ftrans, "UTF-16");
+        Scanner sc1 = new Scanner(forig, "UTF-8");
+        Scanner sc2 = new Scanner(ftrans, "UTF-8");
 
         while (sc1.hasNext() && sc2.hasNext()) {
-            String orig = sc1.nextLine();
-            String trans = sc2.nextLine();
+            String orig_line = sc1.nextLine();
+            String trans_line = sc2.nextLine();
 
-            filtreSentences(orig, trans);
+            filtreSentences(orig_line, trans_line);
         }
         if (!EquiveFrame.forHumanUser.isSelected()) forHumanUser = false;
         readLinesCounter = 0;
         amountOfMatches = 0;// CONNECT AGAIN RECURSION WHEN DOING PRELIMINAR ANALYSIS
     }
 
-    public static void filtreSentences(String orig, String trans) {
-        String strorigTmp[] = splitCleanSentence(orig);
+    public static void filtreSentences(String origLine, String transLine) {
+        String strorigTmp[] = splitCleanSentence(origLine);
 
-        String strtransTmp[] = splitCleanSentence(trans);
+        String strtransTmp[] = splitCleanSentence(transLine);
         readLinesCounter++;
-        if (shortSentncsAreInclAutoumatically) includeShortSentencesAutomatically(orig, trans);
+        if (optionIncludeShortSentencesAutomatically) includeShortSentencesAutomatically(origLine, transLine);
 
-        if (areKeyWordsContainingSentences(strorigTmp[0], strtransTmp[0])) parseKeyWordsSentence(orig, trans);
+        if (areKeyWordsContainingSentences(strorigTmp[0], strtransTmp[0])) parseKeyWordsSentence(origLine, transLine);
+        // For parsing correclty keywords lists in articles
         else {
 
             amountOfMatches += splitSentenceToEquivalents(strorigTmp, strtransTmp);
@@ -265,7 +271,7 @@ class SearchEquive {
     public static void readOriginalTranslFilesCsv() throws IOException {
 
         File flCSV = new File(pathorig);
-        Scanner sc = new Scanner(flCSV);
+        Scanner sc = new Scanner(flCSV, "UTF-8");
         while (sc.hasNext()) {
             String line = sc.nextLine();
             String[] splLine = line.split(",");
@@ -281,14 +287,15 @@ class SearchEquive {
     }
 
     public static void initFieldWithCurrentEquivSet(int count) {
+        System.out.println("potentialEquivToBeAnalyzed "+potentialEquivToBeAnalyzed);
         if (count >= potentialEquivToBeAnalyzed.size()) {
             finishUserAnalysis();
             return;
         }
         Object key = potentialEquivToBeAnalyzed.keySet().toArray()[count];
-        int coince = potentialEquivToBeAnalyzed.get(potentialEquivToBeAnalyzed.keySet().toArray()[count]);
+        int coincidencesNum = potentialEquivToBeAnalyzed.get(potentialEquivToBeAnalyzed.keySet().toArray()[count]);
 
-        if (coince < iCoinceNum) {
+        if (coincidencesNum < iMinCoincidenceNum) {
             initFieldWithCurrentEquivSet(++analyzedEquivalenceCount);
         } else {
             String str = (String) key;
@@ -299,25 +306,24 @@ class SearchEquive {
     }
 
     public static void saveUserEquiveToDatabase(String origEqv, String transEqv) throws SQLException {
-        PreparedStatement statement = conn.prepareStatement(
-                "INSERT INTO " + curTable + " (" + curField1 + "," + curField2 + ")    " +
-                        "            VALUES(?,?)");
-        statement.setString(1, origEqv);
-        statement.setString(2, transEqv);
-        statement.executeUpdate();
-        RegCorrespondances[regEqCount][0] = origEqv;
-        RegCorrespondances[regEqCount][1] = origEqv;
-        regCorrAmount++;
-        regEqCount++;
+//        PreparedStatement statement = conn.prepareStatement(
+//                "INSERT INTO " + curTable + " (" + curField1 + "," + curField2 + ")    " +
+//                        "            VALUES(?,?)");
+//        statement.setString(1, origEqv);
+//        statement.setString(2, transEqv);
+//        statement.executeUpdate();
+
+
     }
 
     public static void finishUserAnalysis() {
         if (!EquiveFrame.forHumanUser.isSelected()) {
-            forHumanUser = false;// CONNECT AGAIN RECURSION WHEN DOING PRELIMINAR ANALYSIS
+            forHumanUser = false;// CONNECT RECURSION WHEN DOING PRELIMINAR ANALYSIS
         }
         EquiveFrame.btAccept.setEnabled(false);
         EquiveFrame.btIgnore.setEnabled(false);
-        GetRegCorrespondances();
+
+        System.out.println("Getting reg_correspondances amount: "+regCorrAmount);
         proposeSaveAutomatically();
         potentialEquivToBeAnalyzed.clear();
 
@@ -326,7 +332,9 @@ class SearchEquive {
 
     public static void acceptBtnActions() {
         bAcceptListner = true;
-        if (showedEquivNum >= maxAmountToBeAnalyzedByUser || showedEquivNum >= potentialEquivToBeAnalyzed.size() || analyzedEquivalenceCount >= potentialEquivToBeAnalyzed.size()) {
+
+        System.out.println("MAX AMOUNTS "+showedEquivNum + " analyzed "+analyzedEquivalenceCount);
+        if (showedEquivNum >= maxAmountToBeAnalyzedByUser ) {
             finishUserAnalysis();
         } else {
             try {
@@ -345,7 +353,7 @@ class SearchEquive {
 
     public static void ignoreButtonActions() {
         bIgnoreListner = true;
-        if (showedEquivNum >= maxAmountToBeAnalyzedByUser || showedEquivNum >= potentialEquivToBeAnalyzed.size() || analyzedEquivalenceCount >= potentialEquivToBeAnalyzed.size()) {
+        if (showedEquivNum >= maxAmountToBeAnalyzedByUser) {
             finishUserAnalysis();
         } else
             initFieldWithCurrentEquivSet(++showedEquivNum);
@@ -398,6 +406,7 @@ class SearchEquive {
     public static void saveResults(PrintWriter prWr, File file) throws IOException {
 
         savedFileCounter++;
+
         try {
             if (!file.exists()) {
                 file.createNewFile();
@@ -485,8 +494,9 @@ class SearchEquive {
         Matcher mtch2threeWords = null;
         String tmporigMatch = "";
         for (indOr = 0; indOr < storig.length; indOr++) {
-            for (indCorr = 0; indCorr < regEqCount; indCorr++) {
-                ptrn1 = Pattern.compile(RegCorrespondances[indCorr][0]);
+            //for (indCorr = 0; indCorr < totalRegEqCount; indCorr++) {
+                for ( Map.Entry<String, String> entry : mapRegCorrespondances.entrySet()){
+                ptrn1 = Pattern.compile(entry.getKey());
                 if (indOr < storig.length) {
                     mtch1 = ptrn1.matcher(storig[indOr]);
                     tmporigMatch = storig[indOr];
@@ -499,7 +509,7 @@ class SearchEquive {
 
                     for (indTransl = 0; indTransl < sttrans.length; indTransl++) {
 
-                        ptrn2 = Pattern.compile(RegCorrespondances[indCorr][1]);
+                        ptrn2 = Pattern.compile(entry.getValue());
                         if (indTransl < sttrans.length) mtch2 = ptrn2.matcher(sttrans[indTransl]);
                         if (indTransl < sttrans.length - 1)
                             mtch2twoWords = ptrn2.matcher(sttrans[indTransl] + " " + sttrans[indTransl + 1]);
@@ -580,24 +590,27 @@ class SearchEquive {
         }
     }
 
-    public static void GetRegCorrespondances() {
+    public static int GetRegCorrespondances() {
 
         curField1 = EquiveFrame.combLang1.getSelectedItem().toString().toUpperCase(); //TELLING THE FIELD NAME WHICH IS THE SAME AS THE NAME OF A DROP-OUT LIST ITEM BUT IN SMALL LETTERS
         curField2 = EquiveFrame.combLang2.getSelectedItem().toString().toUpperCase();
 
         try (final Statement statement = conn.createStatement()) {
-            regEqCount = 0;
-            String strRegAmount = regCorrAmount + 1 + "";
-            int deletedRows = statement.executeUpdate("DELETE FROM " + curTable + " WHERE rowid >" + strRegAmount);
+            totalRegEqCount = 0;
+//            String strRegAmount = regCorrAmount + "";
+//            int deletedRows = statement.executeUpdate("DELETE FROM " + curTable + " WHERE rowid >" + strRegAmount);
+//            System.out.println("Deleted rows "+deletedRows);
             resSet2 = statement.executeQuery("SELECT * FROM " + curTable + "");
             while (resSet2.next()) {
-                RegCorrespondances[regEqCount][0] = reduceNotionalWord(resSet2.getString(curField1));
-                RegCorrespondances[regEqCount][1] = reduceNotionalWord(resSet2.getString(curField2));
-                regEqCount++;
+
+                mapRegCorrespondances.put(reduceNotionalWord(resSet2.getString(curField1)), reduceNotionalWord(resSet2.getString(curField2)) );
+                totalRegEqCount++;
             }
         } catch (SQLException e4) {
             JOptionPane.showMessageDialog(EquiveFrame.pnlorig, "NO CLASS JDBC 1");
         }
+
+        return totalRegEqCount;
     }
 
     public static String reduceNotionalWord(String word) {

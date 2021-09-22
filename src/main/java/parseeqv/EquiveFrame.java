@@ -4,10 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 
 /**
@@ -95,11 +93,18 @@ class EquiveFrame extends JFrame {
             }
 
             System.out.println("Coeff: " + SearchEquive.acceptableCoefficientDifference);
-            fileResults = new File("Results_" + SearchEquive.acceptableCoefficientDifference + " " + EquiveFrame.combLang1.getSelectedItem() + "-" + EquiveFrame.combLang2.getSelectedItem() + "_ParseEqv_Fokin_S_B_All_rights_reserved" + SearchEquive.savedFileCounter + ".txt");
+
+            File directory = new File("results");
+            if (! directory.exists()){
+                directory.mkdir();
+                // If you require it to make the entire directory path including parents,
+                // use directory.mkdirs(); here instead.
+            }
+            fileResults = new File("results/Results_" + SearchEquive.acceptableCoefficientDifference + " " + EquiveFrame.combLang1.getSelectedItem() + "-" + EquiveFrame.combLang2.getSelectedItem() + "_ParseEqv_Fokin_S_B_All_rights_reserved" + SearchEquive.savedFileCounter + ".txt");
 
             try {
-                res = new PrintWriter(fileResults.getAbsolutePath());
-            } catch (FileNotFoundException e12) {
+                res = new PrintWriter(fileResults.getAbsolutePath(),"UTF-8");
+            } catch (FileNotFoundException | UnsupportedEncodingException e12) {
                 JOptionPane.showMessageDialog(pnlorig, "Problems when writing to file");
             }
 
@@ -134,8 +139,15 @@ class EquiveFrame extends JFrame {
         if (!SearchEquive.newSessionListenerAdded) {
             btNewSession.addActionListener(event -> {
                 if (btNewSession.getText().equals(ParseConstants.clearSessionStr)) {
+                    SearchEquive.GetRegCorrespondances();
                     setFrameOptions();
                 }
+
+
+
+
+
+
                 SearchEquive.analyzedEquivalenceCount = 0;
                 SearchEquive.newSessionListenerAdded = true;
                 btSaveAutomatic.setEnabled(false);
@@ -155,9 +167,19 @@ class EquiveFrame extends JFrame {
                 SearchEquive.bSaveExit = false;
                 if (!btNewSession.getText().equals("STOP")) {
                     btStart.setEnabled(true);
+
+
                 }
+
                 btNewSession.setText(ParseConstants.newSessionButtonStr);
                 btNewSession.setBackground(Color.LIGHT_GRAY);
+
+                if (btNewSession.getText().equals(ParseConstants.newSessionButtonStr)) {
+                    System.out.println(ParseConstants.newSessionButtonStr);
+                    System.out.println(btNewSession.getText());
+                    btNewSession.setText(ParseConstants.clearSessionStr);
+                }
+
                 if (btNewSession.getText().equals(ParseConstants.newSessionButtonStr)) {
                     System.out.println(ParseConstants.newSessionButtonStr);
                     System.out.println(btNewSession.getText());
@@ -347,8 +369,10 @@ class MainBlock {
             try {
                 searchEquive.getConnection();
                 searchEquive.DB();
-              if (EquiveFrame.prevAnalysisChecqbx.isSelected())  SearchEquive.forHumanUser=true;// DISCONNECT RECURSION WHEN DOING PRELIMINAR ANALYSIS
-                SearchEquive.GetRegCorrespondances();
+              if (EquiveFrame.prevAnalysisChecqbx.isSelected()) {
+                  SearchEquive.forHumanUser=true;// DISCONNECT RECURSION WHEN DOING PRELIMINAR ANALYSIS
+              }
+                SearchEquive.regCorrAmount = SearchEquive.GetRegCorrespondances();
                 if (SearchEquive.txtTypeSelected) SearchEquive.readOriginalTranslFilesTxt();
                 else {
                     SearchEquive.readOriginalTranslFilesCsv();
@@ -357,7 +381,7 @@ class MainBlock {
                 if (EquiveFrame.prevAnalysisChecqbx.isSelected()) {
                     System.out.println("IS SELECTED");
                     SearchEquive.analyzeSplitPhrases();
-                    System.out.println("SIZE "+SearchEquive.potentialEquivToBeAnalyzed.size());
+                    System.out.println("SIZE POTENTIAL TO BE ANALYZED"+SearchEquive.potentialEquivToBeAnalyzed.size());
                 //    parseeqv.SearchEquive.viewAndSaveEquivalences();
                     SearchEquive.initFieldWithCurrentEquivSet(SearchEquive.showedEquivNum);
                     SearchEquive.analyzedEquivalenceCount++;
